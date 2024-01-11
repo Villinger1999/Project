@@ -91,7 +91,6 @@ test_accuracy_decision_tree_frustrated_k = model_decision_tree_frustrated.score(
 # Calculate the accuracy for the test data for Frus_Group Decision Tree
 test_accuracy_decision_tree_frus_group_k = model_decision_tree_frus_group.score(X_test_frus_group, y_test_frus_group)
 
-
 # Create a 2x2 grid of subplots
 fig, axes = plt.subplots(2, 2, figsize=(10, 8))
 
