@@ -1,6 +1,7 @@
 from ML_prepare import *
 from sklearn.model_selection import StratifiedKFold
 from matplotlib import pyplot as plt
+from sklearn import metrics
 
 # Leave one out
 skf = StratifiedKFold(n_splits=2, shuffle=True, random_state=42)
@@ -116,3 +117,8 @@ plt.tight_layout()
 
 # Display the plot
 plt.show()
+
+# Confusion matrix for Frustrated baseline
+cm_log_f = metrics.confusion_matrix(y_test_f, log_model_f.predict(X_test_f),labels=[0,1,2,3,4,5,6,7,8,9,10])
+cm_display_log_f = metrics.ConfusionMatrixDisplay(cm_log_f,display_labels=[0,1,2,3,4,5,6,7,8,9,10])
+cm_display_log_f.plot()

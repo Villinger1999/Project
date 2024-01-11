@@ -1,6 +1,7 @@
 from ML_prepare import *
 from sklearn.model_selection import KFold
 from matplotlib import pyplot as plt
+from sklearn import metrics
 
 # K-fold cross-validation
 kfold = KFold(n_splits=5, shuffle=True, random_state=42)
@@ -27,6 +28,7 @@ for train_index, val_index in kfold.split(X_train_f, y_train_f):
     acc_log_f_kf.append(acc_l)
     acc_base_f_kf.append(acc_b)
     acc_dtree_f_kf.append(acc_dt)
+
 
 # Train and evaluate the model using stratified k-fold cross-validation for Frus_Group
 acc_log_fg_kf = []
