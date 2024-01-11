@@ -11,5 +11,3 @@ for column in columns_to_log:
 
 median_value = df['Frustrated'].median()
 df['Frus_Group'] = pd.cut(df['Frustrated'], bins=[float('-inf'), median_value, float('inf')], labels=[0, 1])
-
-display(df)
