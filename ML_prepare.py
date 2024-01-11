@@ -31,3 +31,4 @@ base_model_fg = DummyClassifier(strategy='most_frequent', random_state=1)
 dt_model_f = DecisionTreeClassifier(max_depth=10)
 
 dt_model_fg = DecisionTreeClassifier(max_depth=10)
+
