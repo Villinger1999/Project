@@ -1,4 +1,4 @@
-import Load_data
+from Load_data import*
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.dummy import DummyClassifier
