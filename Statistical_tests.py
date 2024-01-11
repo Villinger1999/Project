@@ -4,6 +4,38 @@ import statsmodels.api as sm
 from IPython.display import display
 from scipy.stats import kruskal
 
+from scipy.stats import shapiro
+
+variables = ['HR_Mean', 'HR_Median', 'HR_std', 'HR_Max', 'HR_Min', 'HR_AUC']
+
+pvalue = []
+
+for variable in variables:
+    # Perform Shapiro-Wilk test
+    statistic, p_value = shapiro(df[variable])
+    pvalue.append(p_value)
+
+    # Check if data is parametric or non-parametric
+    if p_value < 0.05:
+        print(f"{variable}: Data is non-parametric")
+    else:
+        print(f"{variable}: Data is parametric")
+
+pvalue
+from scipy.stats import chi2_contingency
+
+variables = ['HR_Mean', 'HR_Median', 'HR_std', 'HR_Min', 'HR_Max', 'HR_AUC', 'Puzzler', 'Frustrated']
+
+for variable in variables:
+    contingency_table = pd.crosstab(df[variable], df['Frustrated'])
+    chi2, p_value, dof, expected = chi2_contingency(contingency_table)
+    print(f"Chi-square Test of Independence for {variable}:")
+    print(f"Chi-square statistic: {chi2}")
+    print(f"P-value: {p_value}")
+
+# If the p-value is less than 0.05, we reject the null hypothesis and conclude that the variables are not independent. 
+# If the p-value is larger than 0.05, we cannot reject the null hypothesis and conclude that the variables are independent.
+
 
 variables = ['HR_std', 'HR_Max', 'HR_AUC']
 
