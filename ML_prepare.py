@@ -22,7 +22,7 @@ X_train_fg, X_test_fg, y_train_fg, y_test_fg = train_test_split(X_fg, y_fg, test
 log_model_f = LogisticRegression(multi_class='multinomial', max_iter=1000000)
 
 # Create a logistic regression model for Frus_Group
-model_frus_group = LogisticRegression(multi_class='multinomial', max_iter=1000000)
+model_frus_group = LogisticRegression(max_iter=1000000)
 
 base_model_f = DummyClassifier(strategy='most_frequent', random_state=1)
 
