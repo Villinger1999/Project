@@ -24,9 +24,9 @@ log_model_f = LogisticRegression(multi_class='multinomial', max_iter=1000000)
 # Create a logistic regression model for Frus_Group
 log_model_fg = LogisticRegression(multi_class='multinomial', max_iter=1000000)
 
-base_f = DummyClassifier(strategy='most_frequent', random_state=1)
+base_model_f = DummyClassifier(strategy='most_frequent', random_state=1)
 
-base_fg = DummyClassifier(strategy='most_frequent', random_state=1)
+base_model_fg = DummyClassifier(strategy='most_frequent', random_state=1)
 
 dt_model_f = DecisionTreeClassifier(max_depth=10)
 
