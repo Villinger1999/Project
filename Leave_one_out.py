@@ -109,19 +109,19 @@ test_accuracy_decision_tree_frus_group = model_decision_tree_frus_group.score(X_
 fig, axes = plt.subplots(2, 2, figsize=(10, 8))
 
 # Plot the average accuracy for Frustrated
-axes[0, 0].bar(['Model', 'Baseline', 'Decision Tree'], [average_accuracy_frustrated, average_accuracy_frustrated_baseline, average_accuracy_decision_tree_frustrated])
+axes[0, 0].bar(['Logistic', 'Baseline', 'Decision Tree'], [average_accuracy_frustrated, average_accuracy_frustrated_baseline, average_accuracy_decision_tree_frustrated])
 axes[0, 0].set_title('Average Accuracy for Frustrated')
 
 # Plot the average accuracy for Frus_Group
-axes[1, 0].bar(['Model', 'Baseline', 'Decision Tree'], [average_accuracy_frus_group, average_accuracy_frus_group_baseline, average_accuracy_decision_tree_frus_group])
+axes[1, 0].bar(['Logistic', 'Baseline', 'Decision Tree'], [average_accuracy_frus_group, average_accuracy_frus_group_baseline, average_accuracy_decision_tree_frus_group])
 axes[1, 0].set_title('Average Accuracy for Frus_Group')
 
 # Plot the accuracy for the test data for Frustrated
-axes[0, 1].bar(['Model', 'Baseline', 'Decision Tree'], [test_accuracy_frustrated, test_accuracy_frustrated_baseline, test_accuracy_decision_tree_frustrated])
+axes[0, 1].bar(['Logistic', 'Baseline', 'Decision Tree'], [test_accuracy_frustrated, test_accuracy_frustrated_baseline, test_accuracy_decision_tree_frustrated])
 axes[0, 1].set_title('Accuracy for Frustrated (Test Data)')
 
 # Plot the accuracy for the test data for Frus_Group
-axes[1, 1].bar(['Model', 'Baseline', 'Decision Tree'], [test_accuracy_frus_group, test_accuracy_frus_group_baseline, test_accuracy_decision_tree_frus_group])
+axes[1, 1].bar(['Logistic', 'Baseline', 'Decision Tree'], [test_accuracy_frus_group, test_accuracy_frus_group_baseline, test_accuracy_decision_tree_frus_group])
 axes[1, 1].set_title('Accuracy for Frus_Group (Test Data)')
 
 # Adjust the spacing between subplots
