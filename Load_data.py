@@ -12,3 +12,4 @@ median_value = df['Frustrated'].median()
 df['Frus_Group'] = pd.cut(df['Frustrated'], bins=[float('-inf'), median_value, float('inf')], labels=[0, 1])
 
 df
+print('test')
