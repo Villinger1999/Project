@@ -3,7 +3,7 @@ from statsmodels.formula.api import ols
 import statsmodels.api as sm
 from IPython.display import display
 from scipy.stats import kruskal
-
+from scipy.stats import chi2_contingency
 from scipy.stats import shapiro
 
 variables = ['HR_Mean', 'HR_Median', 'HR_std', 'HR_Max', 'HR_Min', 'HR_AUC']
@@ -22,7 +22,7 @@ for variable in variables:
         print(f"{variable}: Data is parametric")
 
 pvalue
-from scipy.stats import chi2_contingency
+
 
 variables = ['HR_Mean', 'HR_Median', 'HR_std', 'HR_Min', 'HR_Max', 'HR_AUC', 'Puzzler', 'Frustrated']
 
