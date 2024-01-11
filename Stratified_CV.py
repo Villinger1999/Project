@@ -1,4 +1,4 @@
-from ML_prepare import X_train_frustrated, y_train_frustrated, X_test_frustrated, y_test_frustrated, X_train_frus_group, y_train_frus_group, X_test_frus_group, y_test_frus_group, model_frustrated, model_frus_group, baseline_frustrated, baseline_frus, model_decision_tree_frustrated, model_decision_tree_frus_group
+from ML_prepare import *
 from sklearn.model_selection import StratifiedKFold
 from matplotlib import pyplot as plt
 
@@ -6,122 +6,109 @@ from matplotlib import pyplot as plt
 skf = StratifiedKFold(n_splits=2, shuffle=True, random_state=42)
 
 # Train and evaluate the model using stratified k-fold cross-validation for Frustrated
-accuracies_frustrated = []
-accuracies_frustrated_baseline = []
-accuracies_frustrated_decision_tree = []
-for train_index, val_index in skf.split(X_train_frustrated, y_train_frustrated):
-    X_train_fold, X_val_fold = X_train_frustrated.iloc[train_index], X_train_frustrated.iloc[val_index]
-    y_train_fold, y_val_fold = y_train_frustrated.iloc[train_index], y_train_frustrated.iloc[val_index]
+acc_log_f_skf = []
+acc_base_f_skf = []
+acc_dtree_f_skf = []
+for train_index, val_index in skf.split(X_train_f, y_train_f):
+    X_train_fold, X_val_fold = X_train_f.iloc[train_index], X_train_f.iloc[val_index]
+    y_train_fold, y_val_fold = y_train_f.iloc[train_index], y_train_f.iloc[val_index]
     
     # Train the model on the training fold
-    model_frustrated.fit(X_train_fold, y_train_fold)
-    baseline_frustrated.fit(X_train_fold, y_train_fold)
-    model_decision_tree_frustrated.fit(X_train_fold, y_train_fold)
+    log_model_f.fit(X_train_fold, y_train_fold)
+    base_model_f.fit(X_train_fold, y_train_fold)
+    dt_model_f.fit(X_train_fold, y_train_fold)
     
     
     # Evaluate the model on the validation fold
-    accuracy = model_frustrated.score(X_val_fold, y_val_fold)
-    accuracy_baseline = baseline_frustrated.score(X_val_fold, y_val_fold)
-    accuracy_decision_tree = model_decision_tree_frustrated.score(X_val_fold, y_val_fold)
+    acc_l = log_model_f.score(X_val_fold, y_val_fold)
+    acc_b = base_model_f.score(X_val_fold, y_val_fold)
+    acc_dt = dt_model_f.score(X_val_fold, y_val_fold)
 
-    accuracies_frustrated.append(accuracy)
-    accuracies_frustrated_baseline.append(accuracy_baseline)
-    accuracies_frustrated_decision_tree.append(accuracy_decision_tree)
+    acc_log_f_skf.append(acc_l)
+    acc_base_f_skf.append(acc_b)
+    acc_dtree_f_skf.append(acc_dt)
 
 # Train and evaluate the model using stratified k-fold cross-validation for Frus_Group
-accuracies_frus_group = []
-accuracies_frus_group_baseline = []
-accuracies_frus_group_decision_tree = []
-for train_index, val_index in skf.split(X_train_frus_group, y_train_frus_group):
-    X_train_fold, X_val_fold = X_train_frus_group.iloc[train_index], X_train_frus_group.iloc[val_index]
-    y_train_fold, y_val_fold = y_train_frus_group.iloc[train_index], y_train_frus_group.iloc[val_index]
+acc_log_fg_skf = []
+acc_base_fg_skf = []
+acc_dtree_fg_skf = []
+
+for train_index, val_index in skf.split(X_train_fg, y_train_fg):
+    X_train_fold, X_val_fold = X_train_fg.iloc[train_index], X_train_fg.iloc[val_index]
+    y_train_fold, y_val_fold = y_train_fg.iloc[train_index], y_train_fg.iloc[val_index]
     
     # Train the model on the training fold
-    model_frus_group.fit(X_train_fold, y_train_fold)
-    baseline_frus.fit(X_train_fold, y_train_fold)
-    model_decision_tree_frus_group.fit(X_train_fold, y_train_fold)
+    log_model_fg.fit(X_train_fold, y_train_fold)
+    base_model_fg.fit(X_train_fold, y_train_fold)
+    dt_model_fg.fit(X_train_fold, y_train_fold)
+    
     
     # Evaluate the model on the validation fold
-    accuracy = model_frus_group.score(X_val_fold, y_val_fold)
-    accuracy_baseline = baseline_frus.score(X_val_fold, y_val_fold)
-    accuracy_decision_tree = model_decision_tree_frus_group.score(X_val_fold, y_val_fold)
+    acc_l = log_model_fg.score(X_val_fold, y_val_fold)
+    acc_b = base_model_fg.score(X_val_fold, y_val_fold)
+    acc_dt = dt_model_fg.score(X_val_fold, y_val_fold)
 
-    accuracies_frus_group.append(accuracy)
-    accuracies_frus_group_baseline.append(accuracy_baseline)
-    accuracies_frus_group_decision_tree.append(accuracy_decision_tree)
-
+    acc_log_fg_skf.append(acc_l)
+    acc_base_fg_skf.append(acc_b)
+    acc_dtree_fg_skf.append(acc_dt)
 
 # Calculate the average accuracy across all folds for Frustrated
-average_accuracy_frustrated = sum(accuracies_frustrated) / len(accuracies_frustrated)
-average_accuracy_frustrated_baseline = sum(accuracies_frustrated_baseline) / len(accuracies_frustrated_baseline)
-average_accuracy_decision_tree_frustrated = sum(accuracies_frustrated_decision_tree) / len(accuracies_frustrated_decision_tree)
-# print("Average Accuracy for Frustrated:", average_accuracy_frustrated)
-# print("Average Accuracy for Frustrated Baseline:", average_accuracy_frustrated_baseline)
-# print("Average Accuracy for Frustrated Decision Tree:", average_accuracy_decision_tree_frustrated)
+av_acc_log_f_skf = sum(acc_log_f_skf) / len(acc_log_f_skf)
+av_acc_base_f_skf = sum(acc_base_f_skf) / len(acc_base_f_skf)
+av_acc_dt_f_skf = sum(acc_dtree_f_skf) / len(acc_dtree_f_skf)
 
 # Calculate the average accuracy across all folds for Frus_Group
-average_accuracy_frus_group = sum(accuracies_frus_group) / len(accuracies_frus_group)
-average_accuracy_frus_group_baseline = sum(accuracies_frus_group_baseline) / len(accuracies_frus_group_baseline)
-average_accuracy_decision_tree_frus_group = sum(accuracies_frus_group_decision_tree) / len(accuracies_frus_group_decision_tree)
-# print("Average Accuracy for Frus_Group:", average_accuracy_frus_group)
-# print("Average Accuracy for Frus_Group Baseline:", average_accuracy_frus_group_baseline)
-# print("Average Accuracy for Frus_Group Decision Tree:", average_accuracy_decision_tree_frus_group)
+av_acc_log_fg_skf = sum(acc_log_fg_skf) / len(acc_log_fg_skf)
+av_acc_base_fg_skf = sum(acc_base_fg_skf) / len(acc_base_fg_skf)
+av_acc_dt_fg_skf = sum(acc_dtree_fg_skf) / len(acc_dtree_fg_skf)
 
 
 
 # Print predictions for Frustrated
-y_pred_frustrated = model_frustrated.predict(X_test_frustrated)
-# print("Number of predictions for Frustrated:", len(y_pred_frustrated), len(y_test_frustrated))
+y_pred_f_skf = log_model_f.predict(X_test_f)
 
 # Print predictions for Frus_Group
-y_pred_frus_group = model_frus_group.predict(X_test_frus_group)
-# print("Number of predictions for Frus_Group:", len(y_pred_frus_group), len(y_test_frus_group))
+y_pred_fg_skf = log_model_fg.predict(X_test_fg)
 
-y_pred_frustrated_baseline = baseline_frustrated.predict(X_test_frustrated)
-y_pred_frus_group_baseline = baseline_frus.predict(X_test_frus_group)
+y_pred_base_f_skf = base_model_f.predict(X_test_f)
+y_pred_base_fg_skf = base_model_fg.predict(X_test_fg)
 
 # Calculate the accuracy for the test data for Frustrated
-test_accuracy_frustrated = model_frustrated.score(X_test_frustrated, y_test_frustrated)
-# print("Accuracy for Frustrated (Test Data):", test_accuracy_frustrated)
+test_acc_f_skf = log_model_f.score(X_test_f, y_test_f)
 
 # Calculate the accuracy for the test data for Frus_Group
-test_accuracy_frus_group = model_frus_group.score(X_test_frus_group, y_test_frus_group)
-# print("Accuracy for Frus_Group (Test Data):", test_accuracy_frus_group)
+test_acc_fg_skf = log_model_f.score(X_test_fg, y_test_fg)
 
 # Calculate the accuracy for the test data for Frustrated Baseline
-test_accuracy_frustrated_baseline = baseline_frustrated.score(X_test_frustrated, y_test_frustrated)
-# print("Accuracy for Frustrated Baseline (Test Data):", test_accuracy_frustrated_baseline)
+test_acc_base_f_skf = base_model_f.score(X_test_f, y_test_f)
 
 # Calculate the accuracy for the test data for Frus_Group Baseline
-test_accuracy_frus_group_baseline = baseline_frus.score(X_test_frus_group, y_test_frus_group)
-# print("Accuracy for Frus_Group Baseline (Test Data):", test_accuracy_frus_group_baseline)
+test_acc_base_fg_skf = base_model_fg.score(X_test_fg, y_test_fg)
 
 # Calculate the accuracy for the test data for Frustrated Decision Tree
-test_accuracy_decision_tree_frustrated = model_decision_tree_frustrated.score(X_test_frustrated, y_test_frustrated)
-# print("Accuracy for Frustrated Decision Tree (Test Data):", test_accuracy_decision_tree_frustrated)
+test_acc_dt_f_skf = dt_model_f.score(X_test_f, y_test_f)
 
 # Calculate the accuracy for the test data for Frus_Group Decision Tree
-test_accuracy_decision_tree_frus_group = model_decision_tree_frus_group.score(X_test_frus_group, y_test_frus_group)
-# print("Accuracy for Frus_Group Decision Tree (Test Data):", test_accuracy_decision_tree_frus_group)
+test_acc_dt_fg_skf = dt_model_fg.score(X_test_fg, y_test_fg)
 
 
 # Create a 2x2 grid of subplots
 fig, axes = plt.subplots(2, 2, figsize=(10, 8))
 
 # Plot the average accuracy for Frustrated
-axes[0, 0].bar(['Model', 'Baseline', 'Decision Tree'], [average_accuracy_frustrated, average_accuracy_frustrated_baseline, average_accuracy_decision_tree_frustrated])
+axes[0, 0].bar(['Logistic', 'Baseline', 'Decision Tree'], [av_acc_log_f_skf, av_acc_base_f_skf, av_acc_dt_f_skf])
 axes[0, 0].set_title('Average Accuracy for Frustrated')
 
 # Plot the average accuracy for Frus_Group
-axes[1, 0].bar(['Model', 'Baseline', 'Decision Tree'], [average_accuracy_frus_group, average_accuracy_frus_group_baseline, average_accuracy_decision_tree_frus_group])
+axes[1, 0].bar(['Logistic', 'Baseline', 'Decision Tree'], [av_acc_log_fg_skf, av_acc_base_fg_skf, av_acc_dt_fg_skf])
 axes[1, 0].set_title('Average Accuracy for Frus_Group')
 
 # Plot the accuracy for the test data for Frustrated
-axes[0, 1].bar(['Model', 'Baseline', 'Decision Tree'], [test_accuracy_frustrated, test_accuracy_frustrated_baseline, test_accuracy_decision_tree_frustrated])
+axes[0, 1].bar(['Logistic', 'Baseline', 'Decision Tree'], [test_acc_f_skf, test_acc_base_f_skf, test_acc_dt_f_skf])
 axes[0, 1].set_title('Accuracy for Frustrated (Test Data)')
 
 # Plot the accuracy for the test data for Frus_Group
-axes[1, 1].bar(['Model', 'Baseline', 'Decision Tree'], [test_accuracy_frus_group, test_accuracy_frus_group_baseline, test_accuracy_decision_tree_frus_group])
+axes[1, 1].bar(['Logistic', 'Baseline', 'Decision Tree'], [test_acc_fg_skf, test_acc_base_fg_skf, test_acc_dt_fg_skf])
 axes[1, 1].set_title('Accuracy for Frus_Group (Test Data)')
 
 # Adjust the spacing between subplots
