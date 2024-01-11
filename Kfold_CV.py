@@ -3,7 +3,7 @@ from sklearn.model_selection import KFold
 from matplotlib import pyplot as plt
 
 # K-fold cross-validation
-kfold = KFold(n_splits=2, shuffle=True, random_state=42)
+kfold = KFold(n_splits=5, shuffle=True, random_state=42)
 
 
 
