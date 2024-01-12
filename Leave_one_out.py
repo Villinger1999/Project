@@ -1,7 +1,4 @@
-from ML_prepare import *
-from sklearn.model_selection import LeaveOneOut
-from matplotlib import pyplot as plt
-from sklearn import metrics
+from ML_prepare import*
 
 # Leave one out
 loo = LeaveOneOut()

@@ -1,7 +1,4 @@
 from ML_prepare import *
-from sklearn.model_selection import StratifiedKFold
-from matplotlib import pyplot as plt
-from sklearn import metrics
 
 # Leave one out
 skf = StratifiedKFold(n_splits=2, shuffle=True, random_state=42)

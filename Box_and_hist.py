@@ -1,6 +1,4 @@
 from Load_data import*
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 plt.hist(df["Frustrated"], bins=20)
 plt.show()

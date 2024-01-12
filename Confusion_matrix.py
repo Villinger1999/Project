@@ -1,6 +1,3 @@
-import sklearn.metrics as metrics
-import matplotlib.pyplot as plt
-from sklearn import metrics
 from Kfold_CV import*
 from Leave_one_out import*
 from Stratified_CV import*

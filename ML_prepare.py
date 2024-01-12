@@ -1,8 +1,4 @@
-from Load_data import df
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.dummy import DummyClassifier
-from sklearn.tree import DecisionTreeClassifier
+from Load_data import*
 
 # Models
 X_f = df[['HR_Mean', 'HR_Median', 'HR_std', 'HR_Min', 'HR_Max','HR_AUC']]

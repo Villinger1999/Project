@@ -1,6 +1,4 @@
-from Load_data import df
-import matplotlib.pyplot as plt
-from scipy import stats
+from Load_data import*
 
 variables = ['HR_Mean', 'HR_Median', 'HR_std', 'HR_Max', 'HR_Min', 'HR_AUC']
 
