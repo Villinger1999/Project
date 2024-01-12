@@ -110,3 +110,4 @@ cm_dt_fg_kf = metrics.confusion_matrix(y_test_fg, y_pred_dt_fg_kf,labels=[0,1])
 cm_display_dt_fg_kf = metrics.ConfusionMatrixDisplay(cm_dt_fg_kf,display_labels=[0,1])
 cm_display_dt_fg_kf.plot(ax=axs[1, 2])
 axs[1, 2].set_title("Decision Tree")
+
