@@ -71,6 +71,9 @@ y_pred_fg_skf = log_model_fg.predict(X_test_fg)
 y_pred_base_f_skf = base_model_f.predict(X_test_f)
 y_pred_base_fg_skf = base_model_fg.predict(X_test_fg)
 
+y_pred_dt_f_skf = dt_model_f.predict(X_test_f)
+y_pred_dt_fg_skf = dt_model_fg.predict(X_test_fg)
+
 # Calculate the accuracy for the test data for Frustrated
 test_acc_f_skf = log_model_f.score(X_test_f, y_test_f)
 
@@ -114,8 +117,3 @@ plt.tight_layout()
 
 # Display the plot
 plt.show()
-
-# Confusion matrix for Frustrated baseline
-cm_log_f = metrics.confusion_matrix(y_test_f, log_model_f.predict(X_test_f),labels=[0,1,2,3,4,5,6,7,8,9,10])
-cm_display_log_f = metrics.ConfusionMatrixDisplay(cm_log_f,display_labels=[0,1,2,3,4,5,6,7,8,9,10])
-cm_display_log_f.plot()

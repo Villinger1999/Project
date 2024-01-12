@@ -18,7 +18,7 @@ from sklearn.dummy import DummyClassifier
 from sklearn.tree import DecisionTreeClassifier
 import seaborn as sns
 
-df=pd.read_csv('HR_data.csv')
+df=pd.read_csv(r'HR_data.csv')
 df.drop(['Unnamed: 0'],axis=1,inplace=True)
 columns_to_log = ['HR_std']
 
