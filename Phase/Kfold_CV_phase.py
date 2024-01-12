@@ -31,9 +31,6 @@ av_acc_log_f_kf = sum(acc_log_f_kf) / len(acc_log_f_kf)
 av_acc_base_f_kf = sum(acc_base_f_kf) / len(acc_base_f_kf)
 av_acc_dt_f_kf = sum(acc_dtree_f_kf) / len(acc_dtree_f_kf)
 
-# Print predictions for Frustrated
-import matplotlib.pyplot as plt
-
 y_pred_f_kf = log_model_f.predict(X_test_f)
 
 y_pred_base_f_kf = base_model_f.predict(X_test_f)
