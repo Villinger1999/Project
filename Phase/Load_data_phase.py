@@ -17,6 +17,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.dummy import DummyClassifier
 from sklearn.tree import DecisionTreeClassifier
 import seaborn as sns
+from statsmodels.stats.contingency_tables import mcnemar
 
 df=pd.read_csv(r'HR_data.csv')
 df.drop(['Unnamed: 0'],axis=1,inplace=True)
