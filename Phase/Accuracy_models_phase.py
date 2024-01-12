@@ -1,10 +1,4 @@
 from Load_data_phase import *
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import zero_one_loss
-from sklearn.metrics import accuracy_score
 
 X = df[["HR_Mean", "HR_Median", "HR_std", "HR_Min", "HR_Max", "HR_AUC"]]
 y = df["Phase"]
