@@ -75,6 +75,9 @@ y_pred_fg_kf = log_model_fg.predict(X_test_fg)
 y_pred_base_f_kf = base_model_f.predict(X_test_f)
 y_pred_base_fg_kf = base_model_fg.predict(X_test_fg)
 
+y_pred_dt_f_kf = dt_model_f.predict(X_test_f)
+y_pred_dt_fg_kf = dt_model_fg.predict(X_test_fg)
+
 # Calculate the accuracy for the test data for Frustrated
 test_acc_f_kf = log_model_f.score(X_test_f, y_test_f)
 
