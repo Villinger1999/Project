@@ -1,6 +1,7 @@
 import sklearn.metrics as metrics
 import matplotlib.pyplot as plt
 from sklearn import metrics
+<<<<<<< HEAD
 from Stratified_CV import *
 
 fig, axs = plt.subplots(2, 3, figsize=(12, 8))
@@ -36,4 +37,9 @@ cm_dt_fg_skf = metrics.confusion_matrix(y_test_fg, y_pred_dt_fg_skf,labels=[0,1]
 cm_display_dt_fg_skf = metrics.ConfusionMatrixDisplay(cm_dt_fg_skf,display_labels=[0,1])
 cm_display_dt_fg_skf.plot(ax=axs[1, 2])
 axs[1, 2].set_title("Decision Tree")
+=======
+from Kfold_CV import*
+from Leave_one_out import*
+from Stratified_CV import*
+>>>>>>> 46de917e66bec0f345078d0e24278b183455827c
 
