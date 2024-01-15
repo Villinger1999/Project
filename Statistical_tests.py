@@ -31,7 +31,22 @@ for variable in variables:
 # If the p-value is larger than 0.05, we cannot reject the null hypothesis and conclude that the variables are independent.
 
 
-variables = ['HR_std', 'HR_Max', 'HR_AUC']
+variables = ['HR_Mean', 'HR_Median', 'HR_std', 'HR_Min', 'HR_Max', 'HR_AUC']
+
+for variable in variables:
+    model = ols(f'Frustrated ~ ({variable})', data=df).fit()
+    anova_table = sm.stats.anova_lm(model)
+    print(f"ANOVA Table for {variable}:")
+    display(anova_table)
+
+
+model = ols('Frustrated ~ HR_Mean + HR_Median + HR_std + HR_Min + HR_Max + HR_AUC', data=df).fit()
+anova_table = sm.stats.anova_lm(model)
+print("ANOVA Table for all variables:")
+display(anova_table)
+
+
+variables = ['HR_Max', 'HR_AUC']
 
 for variable in variables:
     groups = [df[df['Frustrated'] == i][variable] for i in df['Frustrated'].unique()]
