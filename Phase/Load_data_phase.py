@@ -35,7 +35,3 @@ scaler = StandardScaler()
 for stan in columns_to_standardize:
     df[stan] = scaler.fit_transform(df[[stan]])
 
-median_value = df['Frustrated'].median()
-df['Frus_Group'] = pd.cut(df['Frustrated'], bins=[float('-inf'), median_value, float('inf')], labels=[0, 1])
-
-df
