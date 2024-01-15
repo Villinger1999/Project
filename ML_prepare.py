@@ -1,11 +1,11 @@
 from Load_data import*
 
 # Models
-X_f = df[['HR_Mean', 'HR_Median', 'HR_std', 'HR_Min', 'HR_Max','HR_AUC']]
+X_f = df[['HR_Max']]
 y_f = df['Frustrated']
 
 # Models
-X_fg = df[['HR_Mean', 'HR_Median', 'HR_std', 'HR_Min', 'HR_Max','HR_AUC']]
+X_fg = df[['HR_Max']]
 y_fg = df['Frus_Group']
 
 # Split the data into training and testing sets for Frustrated
