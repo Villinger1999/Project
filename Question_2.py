@@ -1,17 +1,13 @@
 from Load_data import*
 from scipy.stats import kruskal
 
-variables = ['HR_Mean', 'HR_Median', 'HR_std', 'HR_Min']
+variables = ['HR_Mean', 'HR_Median', 'HR_std', 'HR_Min', 'Frustrated']
 
 for variable in variables:
     model = ols(f'({variable}) ~ C(Puzzler)', data=df).fit()
     anova_table = sm.stats.anova_lm(model)
     print(f"ANOVA Table for {variable}:")
     display(anova_table)
-
-model = ols('Frustrated ~ C(Puzzler)', data=df).fit()
-anova_table = sm.stats.anova_lm(model)
-print(anova_table)
 
 variables = ['HR_Max', 'HR_AUC']
 
