@@ -13,10 +13,6 @@ model = ols('Frustrated ~ C(Puzzler)', data=df).fit()
 anova_table = sm.stats.anova_lm(model)
 print(anova_table)
 
-model = ols('Puzzler ~ C(Frustrated)', data=df).fit()
-anova_table = sm.stats.anova_lm(model)
-print(anova_table)
-
 variables = ['HR_Max', 'HR_AUC']
 
 for variable in variables:
