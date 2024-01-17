@@ -79,7 +79,7 @@ y_pred_dt_fg_kf = dt_model_fg.predict(X_test_fg)
 test_acc_f_kf = log_model_f.score(X_test_f, y_test_f)
 
 # Calculate the accuracy for the test data for Frus_Group
-test_acc_fg_kf = log_model_f.score(X_test_fg, y_test_fg)
+test_acc_fg_kf = log_model_fg.score(X_test_fg, y_test_fg)
 
 # Calculate the accuracy for the test data for Frustrated Baseline
 test_acc_base_f_kf = base_model_f.score(X_test_f, y_test_f)
@@ -93,6 +93,8 @@ test_acc_dt_f_kf = dt_model_f.score(X_test_f, y_test_f)
 # Calculate the accuracy for the test data for Frus_Group Decision Tree
 test_acc_dt_fg_kf = dt_model_fg.score(X_test_fg, y_test_fg)
 
+print([test_acc_f_kf, test_acc_base_f_kf, test_acc_dt_f_kf])
+print([test_acc_fg_kf, test_acc_base_fg_kf, test_acc_dt_fg_kf])
 
 # Create a 2x2 grid of subplots
 fig, axes = plt.subplots(2, 2, figsize=(10, 8))
