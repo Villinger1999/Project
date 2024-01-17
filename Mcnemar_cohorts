@@ -1,0 +1,120 @@
+from statsmodels.stats.contingency_tables import mcnemar
+from classificationreport_in_subgroup import *
+
+# Logistic
+
+print('Logistic')
+
+log_table_1 = pd.DataFrame(dict(y_true_l=df_cohorts_1['Frustrated'], y_pred_l=pred_cohort_1_log))
+log_table_1['log_tf_1'] = log_table_1.y_true_l == log_table_1.y_pred_l
+log_tf_1 = log_table_1.log_tf_1.value_counts()
+
+log_table_2 = pd.DataFrame(dict(y_true_l=df_cohorts_2['Frustrated'], y_pred_l=pred_cohort_2_log))
+log_table_2['log_tf_2'] = log_table_2.y_true_l == log_table_2.y_pred_l
+log_tf_2 = log_table_2.log_tf_2.value_counts()
+
+table_log = [[log_tf_1[1]+log_tf_2[1], log_tf_1[1]+log_tf_2[0]],
+         [log_tf_1[0]+log_tf_2[1], log_tf_1[0]+log_tf_2[0]]]
+
+table_log = pd.DataFrame(table_log, index=['Cohort 1 Correct', 'Cohort 1 Incorrect'], 
+                     columns=['Cohort 2 Correct', 'Cohort 2 Incorrect'])
+
+sns.heatmap(table_log, annot=True, fmt=".1f", annot_kws={"size": 16})
+plt.yticks(rotation=0)
+b, t = plt.ylim() 
+b += 0.5 
+t -= 0.5 
+plt.ylim(b, t) 
+plt.show()
+
+# calculate mcnemar test
+result_log = mcnemar(table_log.values, exact=False, correction=True)
+
+# summarize the finding
+print('statistic=%.3f, p-value=%.3f' % (result_log.statistic, result_log.pvalue))
+
+# interpret the p-value
+alpha = 0.05
+if result_log.pvalue > alpha:
+    print('Same proportions of errors (fail to reject H0)')
+else:
+    print('Different proportions of errors (reject H0)')
+
+# Baseline
+    
+print('Baseline')
+
+
+base_table_1 = pd.DataFrame(dict(y_true_b=df_cohorts_1['Frustrated'], y_pred_b=pred_cohort_1_baseline))
+base_table_1['base_tf_1'] = base_table_1.y_true_b == base_table_1.y_pred_b
+base_tf_1 = base_table_1.base_tf_1.value_counts()
+
+base_table_2 = pd.DataFrame(dict(y_true_b=df_cohorts_2['Frustrated'], y_pred_b=pred_cohort_2_baseline))
+base_table_2['base_tf_2'] = base_table_2.y_true_b == base_table_2.y_pred_b
+base_tf_2 = base_table_2.base_tf_2.value_counts()
+
+table_base = [[base_tf_1[1]+base_tf_2[1], base_tf_1[1]+base_tf_2[0]],
+         [base_tf_1[0]+base_tf_2[1], base_tf_1[0]+base_tf_2[0]]]
+
+table_base = pd.DataFrame(table_base, index=['Cohort 1 Correct', 'Cohort 1 Incorrect'], 
+                     columns=['Cohort 2 Correct', 'Cohort 2 Incorrect'])
+
+sns.heatmap(table_base, annot=True, fmt=".1f", annot_kws={"size": 16})
+plt.yticks(rotation=0)
+b, t = plt.ylim() 
+b += 0.5 
+t -= 0.5 
+plt.ylim(b, t) 
+plt.show()
+
+# calculate mcnemar test
+result_base = mcnemar(table_base.values, exact=False, correction=True)
+
+# summarize the finding
+print('statistic=%.3f, p-value=%.3f' % (result_base.statistic, result_base.pvalue))
+
+# interpret the p-value
+alpha = 0.05
+if result_base.pvalue > alpha:
+    print('Same proportions of errors (fail to reject H0)')
+else:
+    print('Different proportions of errors (reject H0)')
+
+# Decision Tree
+
+print('Decision Tree')
+
+dt_table_1 = pd.DataFrame(dict(y_true_dt=df_cohorts_1['Frustrated'], y_pred_dt=pred_cohort_1_decision))
+dt_table_1['dt_tf_1'] = dt_table_1.y_true_dt == dt_table_1.y_pred_dt
+dt_tf_1 = dt_table_1.dt_tf_1.value_counts()
+
+dt_table_2 = pd.DataFrame(dict(y_true_dt=df_cohorts_2['Frustrated'], y_pred_dt=pred_cohort_2_decision))
+dt_table_2['dt_tf_2'] = dt_table_2.y_true_dt == dt_table_2.y_pred_dt
+dt_tf_2 = dt_table_2.dt_tf_2.value_counts()
+
+table_dt = [[dt_tf_1[1]+dt_tf_2[1], dt_tf_1[1]+dt_tf_2[0]],
+         [dt_tf_1[0]+dt_tf_2[1], dt_tf_1[0]+dt_tf_2[0]]]
+
+table_dt = pd.DataFrame(table_dt, index=['Cohort 1 Correct', 'Cohort 1 Incorrect'], 
+                     columns=['Cohort 2 Correct', 'Cohort 2 Incorrect'])
+
+sns.heatmap(table_dt, annot=True, fmt=".1f", annot_kws={"size": 16})
+plt.yticks(rotation=0)
+b, t = plt.ylim() 
+b += 0.5 
+t -= 0.5 
+plt.ylim(b, t) 
+plt.show()
+
+# calculate mcnemar test
+result_dt = mcnemar(table_dt.values, exact=False, correction=True)
+
+# summarize the finding
+print('statistic=%.3f, p-value=%.3f' % (result_dt.statistic, result_dt.pvalue))
+
+# interpret the p-value
+alpha = 0.05
+if result_dt.pvalue > alpha:
+    print('Same proportions of errors (fail to reject H0)')
+else:
+    print('Different proportions of errors (reject H0)')
