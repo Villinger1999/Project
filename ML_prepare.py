@@ -9,10 +9,10 @@ X_fg = df[['HR_Max']]
 y_fg = df['Frus_Group']
 
 # Split the data into training and testing sets for Frustrated
-X_train_f, X_test_f, y_train_f, y_test_f = train_test_split(X_f, y_f, test_size=0.1, random_state=42)
+X_train_f, X_test_f, y_train_f, y_test_f = train_test_split(X_f, y_f, test_size=0.2, random_state=40)
 
 # Split the data into training and testing sets for Frus_Group
-X_train_fg, X_test_fg, y_train_fg, y_test_fg = train_test_split(X_fg, y_fg, test_size=0.1, random_state=42)
+X_train_fg, X_test_fg, y_train_fg, y_test_fg = train_test_split(X_fg, y_fg, test_size=0.2, random_state=39)
 
 # Create a logistic regression model for Frustrated
 log_model_f = LogisticRegression(multi_class='multinomial', max_iter=1000000)

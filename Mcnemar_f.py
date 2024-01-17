@@ -29,7 +29,7 @@ table_ldtf = pd.DataFrame(table_ldtf, index=['Logistic Correct', 'Logistic Incor
 
 table_bdtf = [[base_tf[1]+dt_tf[1], base_tf[1]+dt_tf[0]],[base_tf[0]+dt_tf[1], base_tf[0]+dt_tf[0]]]
 
-table_bdtf = pd.DataFrame(table_bdtf, index=['Logistic Correct', 'Logistic Incorrect'], 
+table_bdtf = pd.DataFrame(table_bdtf, index=['Base Correct', 'Base Incorrect'], 
                      columns=['Dt', 'Dt Incorrect'])
 
 # Logistic vs Baseline
