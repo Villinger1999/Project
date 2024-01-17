@@ -1,16 +1,18 @@
 from statsmodels.stats.contingency_tables import mcnemar
-from Stratified_CV import *
+from Kfold_CV import *
 
-log_table = pd.DataFrame(dict(y_true=y_test_f, y_pred=y_pred_f_skf))
-log_table['log_tf'] = log_table.y_true == log_table.y_pred
+
+
+log_table = pd.DataFrame(dict(y_true_l=y_test_f, y_pred_l=y_pred_f_kf))
+log_table['log_tf'] = log_table.y_true_l == log_table.y_pred_l
 log_tf = log_table.log_tf.value_counts()
 
-base_table = pd.DataFrame(dict(y_true=y_test_f, y_pred=y_pred_base_f_skf))
-base_table['base_tf'] = base_table.y_true == base_table.y_pred
+base_table = pd.DataFrame(dict(y_true_b=y_test_f, y_pred_b=y_pred_base_f_kf))
+base_table['base_tf'] = base_table.y_true_b == base_table.y_pred_b
 base_tf = base_table.base_tf.value_counts()
 
-dt_table = pd.DataFrame(dict(y_true=y_test_f, y_pred=y_pred_dt_f_skf))
-dt_table['dt_tf'] = dt_table.y_true == dt_table.y_pred
+dt_table = pd.DataFrame(dict(y_true_dt=y_test_f, y_pred_dt=y_pred_dt_f_kf))
+dt_table['dt_tf'] = dt_table.y_true_dt == dt_table.y_pred_dt
 dt_tf = dt_table.dt_tf.value_counts()
 
 table_lbf = [[log_tf[1]+base_tf[1], log_tf[1]+base_tf[0]],
